@@ -1,0 +1,7 @@
+/* mysql user creation */
+CREATE USER 'vanilla'@'localhost' IDENTIFIED WITH 'mysql_native_password' BY 'classic';
+GRANT SELECT, INSERT, UPDATE, DELETE, REFERENCES ON vitrine_info.* TO 'vanilla'@'localhost';
+
+/* mysql user credentials*/
+vanilla
+classic
