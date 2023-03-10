@@ -8,9 +8,19 @@
 html, body {
     width: 100%;
     height: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 body {
     background: #393A3F;
+}
+h1, h2 {
+    display: inline-block;
+    line-height: 27px;
+    height: -moz-max-content;
+    width: -moz-fit-content;
+    height: max-content;
+    width: max-content;
 }
 .Rounded-Rectangle {
     border-radius: 20px;
@@ -20,8 +30,37 @@ body {
 .font-accent-color {
     color: #4186F5;
 }
+a:hover {
+    background: #575b66;
+}
+#grid-container-activities {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-areas:
+    'fractals arduinogame api'
+    'ctf cryptography vm';
+    gap: 20px;
+}
+#grid-item-fractals {
+    grid-area: fractals;
+}
+#grid-item-arduino-game {
+    grid-area: arduinogame;
+}
+#grid-item-api {
+    grid-area: api;
+}
+#grid-item-ctf {
+    grid-area: ctf;
+}
+#grid-item-cryptography {
+    grid-area: cryptography;
+}
+#grid-item-vm {
+    grid-area: vm;
+}
 
-.absolute-position-top-left {
+.absolute-position-title {
     position: absolute;
     left: 57px;
     top: 45px;
@@ -37,8 +76,8 @@ body {
 .flex-row-gap-30px {
     gap: 30px;
 }
-.width-48vw {
-    width: 48vw;
+.width-50vw {
+    width: 50vw;
 }
 /* Generic tags */
 .block {
@@ -72,7 +111,7 @@ body {
     gap: 10px;
 }
 
-.flex-direction-colomn {
+.flex-direction-column {
     flex-direction: column;
     /**/
     gap: 20px;
@@ -81,6 +120,10 @@ body {
 /*all children of class `flex-grow`*/
 .flex-grow-horizontal > * {
     width: 100%;
+}
+
+.text-align-center {
+    text-align: center;
 }
 
 .stretch-all {
@@ -93,4 +136,38 @@ body {
     width: -moz-fit-content;
     height: fit-content;
     width: fit-content;
+}
+
+
+
+/* mobile and small screen devices */
+@media (max-width: 800px) {
+    .absolute-position-title {
+        position: relative;
+        left: inherit;
+        top: inherit;
+        display: flex;
+        justify-content: center;
+        padding: 20px;
+    }
+
+    .width-50vw {
+        width: inherit;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    #grid-container-activities {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-areas:
+        'fractals arduinogame'
+        'api ctf'
+        'cryptography vm';
+        gap: 20px;
+    }
+
+    #div-fill {
+        display: block;
+    }
 }
