@@ -13,6 +13,8 @@ html, body {
 }
 body {
     background: #393A3F;
+    display: flex;
+    flex-direction: column;
 }
 h1, h2 {
     display: inline-block;
@@ -21,17 +23,38 @@ h1, h2 {
     width: -moz-fit-content;
     height: max-content;
     width: max-content;
+    padding-top:4px;
+}
+p {
+    padding-top:2px;
+}
+img {
+    border-radius: 5px;
+}
+a {
+    text-decoration: none;
 }
 .Rounded-Rectangle {
     border-radius: 20px;
     background: #3E414A;
     padding: 40px;
+    text-decoration: none;
+}
+#Navigation-Title:hover {
+    background: none;
+}
+#Footer-description-activite {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: calc(100vh - 105px);
 }
 .font-accent-color {
     color: #4186F5;
 }
 a:hover {
     background: #575b66;
+    cursor: pointer;
 }
 #grid-container-activities {
     display: grid;
@@ -60,15 +83,48 @@ a:hover {
     grid-area: vm;
 }
 
-.absolute-position-title {
-    position: absolute;
-    left: 57px;
-    top: 45px;
+#grid-container-activity-description {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-areas:
+    '. activitydescriptioncontent .';
+    gap: 0px;
+}
+#grid-item-activity-description-content {
+    grid-area: activitydescriptioncontent;
+    /*justify-self: center;*/
 }
 
+.position-absolute {
+    position: absolute;
+    z-index: 1;
+}
+
+.activity-decription-image {
+    max-height: 40vh;
+    width: auto;
+}
+
+.margin-all-45px {
+    margin: 45px;
+}
+.margin-all-20px {
+    margin: 20px;
+}
 .padding-horizontal-30px {
     padding-left: 30px;
     padding-right: 30px;
+}
+.padding-horizontal-20px {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.padding-vertical-10px {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.padding-top-30px {
+    padding-top: 30px;
 }
 .flex-row-gap-10px {
     gap: 10px;
@@ -96,6 +152,10 @@ a:hover {
     justify-content: center;
 }
 
+.flex-justify-content-space-between {
+    justify-content: space-between;
+}
+
 .flex-align-items-center {
     align-items: center;
 }
@@ -105,7 +165,7 @@ a:hover {
     align-content: center;
 }
 
-.flex-flex-direction-row {
+.flex-direction-row {
     flex-direction: row;
     /**/
     gap: 10px;
@@ -121,9 +181,16 @@ a:hover {
 .flex-grow-horizontal > * {
     width: 100%;
 }
+.flex-self-grow-vertical {
+    height: 100%;
+}
 
 .text-align-center {
     text-align: center;
+}
+
+.rotate-180 {
+    transform: rotate(180deg);
 }
 
 .stretch-all {
@@ -138,6 +205,17 @@ a:hover {
     width: fit-content;
 }
 
+.stretch-horizontal {
+    width: 100%;
+}
+
+.display-none {
+    display: none;
+}
+
+#invisible-retour-button {
+    visibility: hidden;
+}
 
 
 /* mobile and small screen devices */
