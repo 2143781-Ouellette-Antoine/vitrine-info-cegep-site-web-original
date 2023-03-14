@@ -5,7 +5,7 @@
  */
 $_SESSION['TAB_TITLE'] = "Accueil - Vitrine informatique";
 $_SESSION['PAGE_DESCRIPTION'] = "Page d'accueil de la Vitrine informatique";
-require 'include/header-head.inc';
+require 'include/html-head.inc';
 ?>
 
 <!-- position absolue -->

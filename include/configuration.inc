@@ -16,8 +16,8 @@ mysqli_report(MYSQLI_REPORT_OFF); // PHP 8
 if ($mysqli->connect_errno) {
     die("Echec lors de la connexion a la base de donnees");
 }
+
 $mysqli->set_charset("utf8mb4");
 
 
 ?>
-
