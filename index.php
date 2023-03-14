@@ -14,6 +14,7 @@ require 'include/html-head.inc';
 <div id="box">
 
     <div class="fixed">
+        <!-- Navigation Bar -->
         <div class="NavigationBar">
             <a id="PageTitle" href="index.php">
                 <img src="medias/server.svg" alt="Icone serveur" id="PageIcon">

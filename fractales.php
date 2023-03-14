@@ -23,3 +23,17 @@ require 'include/html-head.inc';
         <h3 class="font-accent-color VerticalButtonText">Se connecter</h3>
     </a>
 </div>
+
+<!-- Content -->
+<div class="grid">
+
+
+</div>
+
+<?php
+$_SESSION['BACK_BUTTON'] = true;
+$_SESSION['BACK_PAGE_PATH'] = "index.php";
+$_SESSION['FOOTER_ACTION_PATH'] = "tv.php";
+$_SESSION['FOOTER_ACTION_TEXT'] = "Se connecter a la TV";
+require 'include/footer.inc';
+?>
