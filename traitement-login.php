@@ -101,7 +101,7 @@ else
     // réagir si l'appel ne provient pas du formulaire
     $_SESSION[] = "";
     // par exemple, ici, on redirige vers la page d'accueil sans avertissement
-    header("location: index.php");
+    header("location: index-not-work.php");
 }
 
 

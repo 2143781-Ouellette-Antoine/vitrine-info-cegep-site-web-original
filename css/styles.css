@@ -5,247 +5,71 @@
     color: #FFFFFF;
     box-sizing: border-box;
 }
+
 html, body {
     width: 100%;
     height: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
 }
-body {
-    background: #393A3F;
+
+#box {
+    display: table;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+.fixed {
+    height: 0;
+    background-color: rgb(0, 255, 255);
+    display: table-row;
+}
+#remaining {
+    background-color: #6a9cff;
+    display: table-row;
+}
+.NavigationBar {
+    display: flex;
+    flex-direction: row;
+    padding: 2.5em;
+}
+#center-remaining {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }
-h1, h2 {
-    display: inline-block;
-    line-height: 27px;
-    height: -moz-max-content;
-    width: -moz-fit-content;
-    height: max-content;
-    width: max-content;
-    padding-top:4px;
+
+#GridContainerPage {
+    display: grid;
+    grid-template-columns: 1fr 45vw 1fr;
+    grid-template-areas:
+    '. page .';
 }
-p {
-    padding-top:2px;
+#GridContentPage {
+    grid-area: page;
+
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-gap: 20px;
 }
-img {
-    border-radius: 5px;
-}
-a {
-    text-decoration: none;
-}
-.Rounded-Rectangle {
+
+.ActivityButton {
+    height: 25vh;
     border-radius: 20px;
     background: #3E414A;
     padding: 40px;
     text-decoration: none;
-}
-#Navigation-Title:hover {
-    background: none;
-}
-#Footer-description-activite {
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: calc(100vh - 105px);
-}
-.font-accent-color {
-    color: #4186F5;
-}
-a:hover {
-    background: #575b66;
-    cursor: pointer;
-}
-#grid-container-activities {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    grid-template-areas:
-    'fractals arduinogame api'
-    'ctf cryptography vm';
-    gap: 20px;
-}
-#grid-item-fractals {
-    grid-area: fractals;
-}
-#grid-item-arduino-game {
-    grid-area: arduinogame;
-}
-#grid-item-api {
-    grid-area: api;
-}
-#grid-item-ctf {
-    grid-area: ctf;
-}
-#grid-item-cryptography {
-    grid-area: cryptography;
-}
-#grid-item-vm {
-    grid-area: vm;
-}
 
-#grid-container-activity-description {
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-    grid-template-areas:
-    '. activitydescriptioncontent .';
-    gap: 0px;
-}
-#grid-item-activity-description-content {
-    grid-area: activitydescriptioncontent;
-    /*justify-self: center;*/
-}
-
-.position-absolute {
-    position: absolute;
-    z-index: 1;
-}
-
-.activity-decription-image {
-    max-height: 40vh;
-    width: auto;
-}
-
-.margin-all-45px {
-    margin: 45px;
-}
-.margin-all-20px {
-    margin: 20px;
-}
-.padding-horizontal-30px {
-    padding-left: 30px;
-    padding-right: 30px;
-}
-.padding-horizontal-20px {
-    padding-left: 20px;
-    padding-right: 20px;
-}
-.padding-vertical-10px {
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-.padding-top-30px {
-    padding-top: 30px;
-}
-.flex-row-gap-10px {
-    gap: 10px;
-}
-.flex-row-gap-30px {
-    gap: 30px;
-}
-.width-50vw {
-    width: 50vw;
-}
-/* Generic tags */
-.block {
-    display: block;
-}
-.flexbox {
     display: flex;
-}
-
-.flex-center-center {
-    justify-content: center;
-    align-items: center;
-}
-
-.flex-justify-content-center {
-    justify-content: center;
-}
-
-.flex-justify-content-space-between {
-    justify-content: space-between;
-}
-
-.flex-align-items-center {
-    align-items: center;
-}
-
-
-.flex-align-content-center {
-    align-content: center;
-}
-
-.flex-direction-row {
-    flex-direction: row;
-    /**/
-    gap: 10px;
-}
-
-.flex-direction-column {
     flex-direction: column;
-    /**/
-    gap: 20px;
-}
-
-/*all children of class `flex-grow`*/
-.flex-grow-horizontal > * {
-    width: 100%;
-}
-.flex-self-grow-vertical {
-    height: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
 }
 
 .text-align-center {
     text-align: center;
 }
-
-.rotate-180 {
-    transform: rotate(180deg);
-}
-
-.stretch-all {
-    height: 100%;
-    width: 100%;
-}
-
-.no-stretch {
-    height: -moz-max-content;
-    width: -moz-fit-content;
-    height: fit-content;
-    width: fit-content;
-}
-
-.stretch-horizontal {
-    width: 100%;
-}
-
-.display-none {
-    display: none;
-}
-
-#invisible-retour-button {
-    visibility: hidden;
-}
-
-
-/* mobile and small screen devices */
-@media (max-width: 800px) {
-    .absolute-position-title {
-        position: relative;
-        left: inherit;
-        top: inherit;
-        display: flex;
-        justify-content: center;
-        padding: 20px;
-    }
-
-    .width-50vw {
-        width: inherit;
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-
-    #grid-container-activities {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        grid-template-areas:
-        'fractals arduinogame'
-        'api ctf'
-        'cryptography vm';
-        gap: 20px;
-    }
-
-    #div-fill {
-        display: block;
-    }
+.font-accent-color {
+    color: #4186F5;
 }
