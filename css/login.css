@@ -1,0 +1,49 @@
+h1 {
+    padding-bottom: 0.6em;
+}
+
+.center-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+#login-container {
+    width: 40vw;
+    height: max-content;
+}
+
+form {
+    width: 18vw;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+label {
+    font-size: large;
+    padding-bottom: 0.2em;
+}
+input {
+    height: 3em;
+    width: 100%;
+    font-family: inherit;
+    color: #3e414a;
+    font-weight: bold;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+.Button {
+    width: 100%;
+    margin-top: 0.4em;
+    border-radius: 20px;
+    background: #3E414A;
+    padding: 1.3em;
+    border-style: none;
+    font-size: large;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

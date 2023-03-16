@@ -12,7 +12,7 @@ html, body {
     height: 100%;
     background: #393A3F;;
 }
-h1, h2, h3, p {
+h1, h2, h3, p, label {
     display:table;
 }
 h2, h3 {
@@ -60,6 +60,22 @@ h2, h3 {
     justify-content: space-between;
     padding: 2.2em;
     width: 100%;
+}
+
+.alert {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(100vw - 1em);
+    margin: 0.5em;
+    border-radius: 5px;
+    padding: 1em;
+}
+.alert-error {
+    background: #B85450;
+}
+.font-error {
+    color: #B85450;
 }
 
 .text-align-center {

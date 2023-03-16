@@ -60,7 +60,7 @@ if (!empty($_POST))
 
             if (0 == $stmt->errno) {
                 $_SESSION['operation_reussie'] = true;
-                $_SESSION['message_operation'] = "Connexion reussie !";
+                $_SESSION['message_operation'] = "";
             }
             else {
                 $_SESSION['message_operation'] = "Nous sommes désolés, un problème technique nous empêche de vous connecter (code 1).";

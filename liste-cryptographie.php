@@ -11,7 +11,7 @@ $_SESSION['PAGE_DESCRIPTION'] = "Page de la liste des activites Cryptographie de
 $_SESSION['INCLUDE_CSS_JS'] = ["css/liste-cards.css"];
 require 'include/html-head.inc';
 ?>
-    <body>
+<body>
 <!-- Navigation Bar -->
 <?php
 $_SESSION['NAVIGATION_BAR_TITLE'] = "";
