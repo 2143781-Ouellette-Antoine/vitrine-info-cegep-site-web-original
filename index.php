@@ -8,6 +8,7 @@ require 'include/configuration.inc';
 $_SESSION['PAGE_NAME'] = "Accueil";
 $_SESSION['TAB_TITLE'] = $_SESSION['PAGE_NAME'];
 $_SESSION['PAGE_DESCRIPTION'] = "Page d'accueil de la Vitrine informatique";
+$_SESSION['INCLUDE_CSS_JS'] = ["css/index.css"];
 require 'include/html-head.inc';
 ?>
 <body>
@@ -15,17 +16,11 @@ require 'include/html-head.inc';
 
     <div class="fixed">
         <!-- Navigation Bar -->
-        <div class="NavigationBar">
-            <a id="PageTitle" href="index.php">
-                <img src="medias/server.svg" alt="Icone serveur" id="PageIcon">
-                <h2>Vitrine informatique</h2>
-            </a>
-
-            <a class="VerticalButton" href="login.php">
-                <img src="medias/user-circle.svg" alt="Icone connexion" class="VerticalButtonIcon">
-                <h3 class="font-accent-color VerticalButtonText">Se connecter</h3>
-            </a>
-        </div>
+        <?php
+        $_SESSION['NAVIGATION_BAR_TITLE'] = "";
+        $_SESSION['LOGIN_BUTTON'] = true;
+        require 'include/navigation-bar.inc';
+        ?>
     </div>
 
     <div id="remaining">
@@ -65,11 +60,14 @@ require 'include/html-head.inc';
         </div>
     </div>
 
-    <div class="fixed" style="visibility: hidden">
-        <div class="NavigationBar">
-            <img src="medias/server.svg">
-            <h2>Vitrine de l'informatique</h2>
-        </div>
+    <!-- Invisible -->
+    <div class="fixed invisible">
+        <!-- Navigation Bar -->
+        <?php
+        $_SESSION['NAVIGATION_BAR_TITLE'] = "";
+        $_SESSION['LOGIN_BUTTON'] = true;
+        require 'include/navigation-bar.inc';
+        ?>
     </div>
 
 </div>

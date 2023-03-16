@@ -5,10 +5,10 @@
  */
 require 'include/configuration.inc';
 /* Creation des variables de session a passer a html-head.inc */
-$_SESSION['PAGE_NAME'] = "Fractales";
+$_SESSION['PAGE_NAME'] = "Liste des API";
 $_SESSION['TAB_TITLE'] = $_SESSION['PAGE_NAME'];
-$_SESSION['PAGE_DESCRIPTION'] = "Page d'accueil de la Vitrine informatique";
-$_SESSION['INCLUDE_CSS_JS'] = ["css/activite.css"];
+$_SESSION['PAGE_DESCRIPTION'] = "Page de la liste des API de la Vitrine informatique";
+$_SESSION['INCLUDE_CSS_JS'] = ["css/liste-cards.css"];
 require 'include/html-head.inc';
 ?>
 <body>
@@ -23,11 +23,12 @@ require 'include/navigation-bar.inc';
 <div id="GridContainerPage">
     <div id="GridContentPage">
         <h1><?php echo $_SESSION['PAGE_NAME'] ?></h1>
-        <img src="https://www.treehugger.com/thmb/H2T140vCOLxad6YeqV2j6x8-i6U=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/8-b3b667829a6c40449b7354eacab2873d.jpg">
-        <h2>Description</h2>
-        <p>
-            Voici la description de cette activité interractive.
-        </p>
+        <div class="GridCards">
+            <a class="ActivityButton" href="api-page.php?id=1">
+                <img src="medias/globe.svg">
+                <h3 class="text-align-center font-accent-color">API 1</h3>
+            </a>
+        </div>
     </div>
 </div>
 
@@ -44,8 +45,8 @@ require 'include/navigation-bar.inc';
 <!-- Footer -->
 <?php
 $_SESSION['BACK_BUTTON'] = true;
-$_SESSION['BACK_PAGE_PATH'] = "index.php";
-$_SESSION['FOOTER_ACTION_TEXT'] = "Se connecter a la TV";
-$_SESSION['FOOTER_ACTION_PATH'] = "tv.php";
+$_SESSION['BACK_PAGE_PATH'] = "api.php";
+$_SESSION['FOOTER_ACTION_TEXT'] = "";
+$_SESSION['FOOTER_ACTION_PATH'] = "";
 require 'include/footer.inc';
 ?>

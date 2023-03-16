@@ -15,5 +15,18 @@
 
     <link rel="icon" href="favicon.ico" type="image/png"/>
     <link rel="stylesheet" href="css/styles.css">
+    <?php
+        //Pour chaque parametre
+        foreach ($_SESSION['INCLUDE_CSS_JS'] as $path) {
+            //si css
+            if (substr_compare($path, ".css", -4) === 0) {
+                echo "<link rel='stylesheet' href='" . $path . "'>";
+            }
+            //si js
+            if (substr_compare($path, ".js", -3) === 0) {
+                echo "<script src='js/scriptspages/" . $path . "' defer></script>";
+            }
+        }
+    ?>
 
 </head>
