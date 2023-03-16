@@ -4,34 +4,25 @@
  * @Author: LarochelleJ
  * @Date:   2023-03-09 21:20:18
  * @Last Modified by:   LarochelleJ
- * @Last Modified time: 2023-03-10 14:47:42
+ * @Last Modified time: 2023-03-15 21:52:21
+ *
+ * Socket used to communicate with the API server
  */
 
 class ApiSocket {
     private $socket;
 
-    function __construct() {
-        /*
-         * Configuration API
-        */
-        $apiHost = "localhost";
-        $apiPort = 2121;
-
-        if (!($this->socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP))) {
+    function __construct($apiHost, $apiPort) {
+        if (!($this->socket = @socket_create(AF_INET, SOCK_STREAM, SOL_TCP))) {
             // Error when creating the socket
-            // socket_strerror(socket_last_error());
-            return false;
+            throw new Exception(socket_last_error($this->socket));
         }
 
 
-        if (!socket_connect($this->socket, $apiHost, $apiPort)) {
+        if (!@socket_connect($this->socket, $apiHost, $apiPort)) {
             // Issue when connecting
-            // socket_strerror(socket_last_error($socket));
-            return false;
+            throw new Exception(socket_last_error($this->socket));
         }
-
-
-        return true;
     }
 
     function __destruct() {
@@ -40,7 +31,12 @@ class ApiSocket {
         }
     }
 
-    function send($query) {
+    /**
+     * Write data on the API socket
+     * @param  [String] $query [Query to write on the socket]
+     * @return [String]        [Response from API server]
+     */
+    function write($query) {
         socket_write($this->socket, $query, strlen($query));
         socket_write($this->socket, "\r\n", strlen ("\r\n")); // end of line for Java
 
