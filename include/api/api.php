@@ -4,7 +4,7 @@
  * @Author: LarochelleJ
  * @Date:   2023-03-15 20:49:04
  * @Last Modified by:   LarochelleJ
- * @Last Modified time: 2023-03-15 21:51:35
+ * @Last Modified time: 2023-03-16 19:14:17
  *
  * All API logic goes here
  */
@@ -41,6 +41,10 @@ class Api {
      */
     function testApiServer() {
         return $this->request("TEST|") == "OK";
+    }
+
+    function getFractalsList() {
+        return $this->request("LFRACTALS|");
     }
 }
 
