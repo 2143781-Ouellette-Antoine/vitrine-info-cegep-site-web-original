@@ -3,6 +3,19 @@
  *
  * @author Antoine Ouellette
  */
+if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')
+    $currentURL = "https://";
+else
+    $currentURL = "http://";
+// Append the host(domain name, ip) to the URL.
+$currentURL .= $_SERVER['HTTP_HOST'];
+// Append the requested resource location to the URL
+$currentURL .= $_SERVER['REQUEST_URI'];
+
+if($_SESSION['BACK_PAGE_PATH']==$currentURL)
+{
+    $_SESSION['BACK_PAGE_PATH'] = "index.php";
+}
 ?>
 <!-- Footer Bar -->
 <div id="FooterBar">
