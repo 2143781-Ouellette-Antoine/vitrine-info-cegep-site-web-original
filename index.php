@@ -72,3 +72,6 @@ require 'include/html-head.inc';
 
 </div>
 </body>
+<?php
+require 'include/nettoyage.inc';
+?>
