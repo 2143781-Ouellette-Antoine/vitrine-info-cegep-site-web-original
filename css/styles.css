@@ -57,13 +57,28 @@ h2, h3 {
 
 #FooterBar {
     position: fixed;
-    top: calc(100vh - 8.2em);
+    bottom: 0;
     left: 0;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding: 2.2em;
+    pointer-events: none;
     width: 100%;
+}
+#FooterBar > * {
+    pointer-events: auto;
+}
+
+#GridContainerPage {
+    display: grid;
+    grid-template-columns: 1fr 45vw 1fr;
+    grid-template-areas:
+    '. page .';
+}
+#GridContentPage {
+    grid-area: page;
+    height: 100%;
 }
 
 .alert {
@@ -92,5 +107,57 @@ h2, h3 {
     visibility: hidden;
 }
 .display-none {
-    display: none;
+    display: none !important;
+}
+
+@media (max-width: 800px) {
+    .NavigationBar {
+        padding: 1.2em;
+    }
+    #FooterBar {
+        padding: 1.2em;
+    }
+
+    #LoginButton {
+        background: transparent;
+        padding: 0;
+    }
+    #LoginButton > h3 {
+        display: none;
+    }
+
+    #GridContainerPage, #GridContentPage {
+        display: block;
+    }
+
+    #GridContentPage {
+        padding: 0.2em 1.4em 1.2em 1.4em;
+    }
+}
+
+@media (max-width: 511px) {
+    #FooterBar {
+        gap: 1em;
+    }
+    #BackButton > h3 {
+        display: none;
+    }
+    #BackButton > img {
+        width: max-content;
+    }
+
+    #ActionButton {
+        width: 100%;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+}
+
+@media (max-width: 351px) {
+    #FooterBar {
+        font-size: small;
+    }
 }

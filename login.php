@@ -5,7 +5,7 @@
  */
 /* Sauvegarder la page precedente. */
 require 'include/configuration.inc';
-$_SESSION['PAGE_NAME'] = $_SESSION['PAGE_NAME'];
+$_SESSION['PAGE_NAME'] = "Se connecter";
 $_SESSION['TAB_TITLE'] = "Connexion";
 $_SESSION['PAGE_DESCRIPTION'] = "Page de connexion de la Vitrine informatique";
 $_SESSION['INCLUDE_CSS_JS'] = ["css/login.css", "js/login.js"];
@@ -43,18 +43,18 @@ if (isset($_SESSION['message_operation']) && !$_SESSION['message_operation']==""
 
 <div id="login-container" class="center-content">
     <h1>Connexion</h1>
-    <form action="http://127.0.0.1/vitrine-info/traitement-login.php" method="post" name="formulaireAuthentification" id="formulaireAuthentification">
+    <form action="http://127.0.0.1/vitrine-info/traitement-login.php" method="post" name="formulaireAuthentification" id="formulaireAuthentification" onsubmit="return ValidationFormulaire()">
         <div class="form-group">
             <label for="login_email" class="required">Email:</label>
-            <input type="text" class="form-control" name="login_email" id="login_email" required autofocus
+            <input type="text" class="form-control" name="login_email" id="login_email" autofocus oninput="ValidationEmail()"
                    value="<?php echo $donneesSaisiesPrecedemment['login_email'] ?? '' ?>">
-            <small class="font-error display-none">Erreur!</small>
+            <small class="font-error invisible">Erreur!</small>
         </div>
         <div class="form-group">
             <label for="login_password" class="required">Mot de passe:</label>
-            <input type="text" class="form-control" name="login_password" id="login_password" required
+            <input type="text" class="form-control" name="login_password" id="login_password" oninput="ValidationPassword()"
                    value="<?php echo $donneesSaisiesPrecedemment['login_password'] ?? '' ?>">
-            <small class="font-error display-none">Erreur!</small>
+            <small class="font-error invisible">Erreur!</small>
         </div>
         <!--Soumettre-->
         <div>
@@ -69,14 +69,8 @@ $_SESSION['BACK_BUTTON'] = true;
 
 /*
 HTTP_REFERER might not work with HTTPS and some browser might ommit it from the header section
-
-Suggestion:
-Use $_SESSION['BACK_PAGE_PATH'] = $_SERVER['REQUEST_URI']; at the end of footer.inc
- */
-if (isset($_SERVER['HTTP_REFERER'])) {
-    $_SESSION['BACK_PAGE_PATH'] = $_SERVER['HTTP_REFERER'];
-}
-
+*/
+$_SESSION['BACK_PAGE_PATH'] = $_SERVER['HTTP_REFERER']??"index.php";
 $_SESSION['FOOTER_ACTION_TEXT'] = "";
 $_SESSION['FOOTER_ACTION_PATH'] = "";
 require 'include/footer.inc';

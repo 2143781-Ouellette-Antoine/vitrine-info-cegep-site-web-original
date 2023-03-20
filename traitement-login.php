@@ -4,7 +4,7 @@
  * @author Antoine Ouellette
  */
 require 'include/configuration.inc';
-define("BACK_PAGE_PATH", $_SESSION['BACK_PAGE_PATH']);
+define("BACK_PAGE_PATH", $_SESSION['BACK_PAGE_PATH']??"index.php");
 
 // Si je proviens d'un formulaire POST
 if (!empty($_POST))
@@ -86,6 +86,8 @@ if (!empty($_POST))
 
     //Redirection:
     if ($_SESSION['operation_reussie'] == true) {
+        //Declarer que Logged In
+        $_SESSION['LOGGED_IN'] = true;
         //retourne a la page precedente.
         $header = "location: " . BACK_PAGE_PATH;
         header($header);
@@ -101,9 +103,8 @@ else
     // réagir si l'appel ne provient pas du formulaire
     $_SESSION[] = "";
     // par exemple, ici, on redirige vers la page d'accueil sans avertissement
-    header("location: index-not-work.php");
+    header("location: index.php");
 }
 
-
-require 'include/nettoyage.inc'; /* Appel nettoyage.inc */
+require 'include/nettoyage.inc';
 ?>

@@ -23,10 +23,11 @@
 }
 
 #GridContainerPage {
+    width: 100%;
     display: grid;
     grid-template-columns: 1fr 45vw 1fr;
     grid-template-areas:
-    '. page .';
+    'entrepot page .';
 }
 #GridContentPage {
     grid-area: page;
@@ -34,6 +35,14 @@
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     grid-gap: 1.2em;
+}
+#GridContentEntrepot {
+    grid-area: entrepot;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
 }
 
 .ActivityButton {
@@ -47,4 +56,61 @@
     justify-content: center;
     align-items: center;
     gap: 0.5em;
+}
+
+#EntrepotButton {
+    background: #b69e7b;
+    height: 28vh;
+    width: 15vw;
+}
+#EntrepotButton > * {
+    color: #5d564a;
+}
+
+/* mobile and small screen devices */
+@media (max-width: 930px) {
+    .fixed {
+        display: initial;
+    }
+
+    #remaining, #center-remaining {
+        display: block;
+    }
+
+    #GridContainerPage {
+        grid-template-columns: 1fr 60vw 1fr;
+    }
+    #GridContentPage {
+        padding: 0.2em 1.4em 1.2em 1.4em;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .ActivityButton {
+        padding: 1em;
+    }
+
+    .fixed.invisible {
+        display: none;
+    }
+
+    #EntrepotButton {
+        display: none;
+    }
+}
+
+@media (max-width: 601px) {
+    #GridContainerPage {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 401px) and (max-height: 852px) {
+    .ActivityButton {
+        height: 20vh;
+    }
+    .ActivityButton > h3 {
+        font-size: medium;
+    }
 }
