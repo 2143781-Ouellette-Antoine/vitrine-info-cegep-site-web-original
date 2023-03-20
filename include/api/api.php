@@ -4,7 +4,7 @@
  * @Author: LarochelleJ
  * @Date:   2023-03-15 20:49:04
  * @Last Modified by:   LarochelleJ
- * @Last Modified time: 2023-03-16 19:14:17
+ * @Last Modified time: 2023-03-17 16:10:12
  *
  * All API logic goes here
  */
@@ -46,6 +46,19 @@ class Api {
     function getFractalsList() {
         return $this->request("LFRACTALS|");
     }
+
+    function isTvReady() {
+        return $this->request("TVSTATUS|");
+    }
+
+    function connectTv($code) {
+        return $this->request("TVCONNECT|" . $code);
+    }
+
+    function checkTvSession($sessionID, $sessionTotp) {
+        return $this->request("TVSESSIONSTATUS|" . $sessionID . "|" . $sessionTotp);
+    }
+
 }
 
 ?>

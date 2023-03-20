@@ -10,7 +10,7 @@
         <h2>Vitrine informatique</h2>
     </a>
 
-    <a class="VerticalButton <?php echo $_SESSION['LOGIN_BUTTON'] ? "" : "invisible" ?>" href="login.php">
+    <a class="VerticalButton <?php echo $_SESSION['LOGIN_BUTTON'] ? "" : "invisible" ?>" href="login.php" id="LoginButton">
         <img src="medias/user-circle.svg" alt="Icone connexion" class="VerticalButtonIcon">
         <h3 class="font-accent-color VerticalButtonText">Se connecter</h3>
     </a>
