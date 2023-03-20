@@ -16,7 +16,7 @@ h1 {
 }
 
 form {
-    width: 18vw;
+    width: 30vw;
     display: flex;
     flex-direction: column;
     gap: 0.4em;
@@ -46,4 +46,23 @@ input {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+@media (max-width: 676px) {
+    #login-container {
+        width: 60vw;
+        height: max-content;
+        padding: 1.2em 3em 1.2em 3em;
+    }
+    form {
+        width: 100%;
+    }
+}
+
+@media (max-width: 446px) {
+    #login-container {
+        width: 100vw;
+        height: max-content;
+        padding: 1.2em 3em 1.2em 3em;
+    }
 }

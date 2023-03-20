@@ -7,17 +7,6 @@ h1 {
     padding-bottom: 0.6em;
 }
 
-#GridContainerPage {
-    display: grid;
-    grid-template-columns: 1fr 45vw 1fr;
-    grid-template-areas:
-    '. page .';
-}
-#GridContentPage {
-    grid-area: page;
-    height: 100%;
-}
-
 .GridCards {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));

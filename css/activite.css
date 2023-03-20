@@ -6,17 +6,6 @@ img {
 h1 {
     padding-bottom: 0.6em;
 }
-h2 {
-    margin-top: 0.4em;
-}
-
-#GridContainerPage {
-    display: grid;
-    grid-template-columns: 1fr 45vw 1fr;
-    grid-template-areas:
-    '. page .';
-}
-#GridContentPage {
-    grid-area: page;
-    height: 100%;
+#GridContentPage > h2 {
+    margin-top: 0.2em;
 }

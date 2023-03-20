@@ -86,6 +86,8 @@ if (!empty($_POST))
 
     //Redirection:
     if ($_SESSION['operation_reussie'] == true) {
+        //Declarer que Logged In
+        $_SESSION['LOGGED_IN'] = true;
         //retourne a la page precedente.
         $header = "location: " . BACK_PAGE_PATH;
         header($header);
