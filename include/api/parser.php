@@ -4,7 +4,7 @@
  * @Author: LarochelleJ
  * @Date:   2023-03-15 20:59:10
  * @Last Modified by:   LarochelleJ
- * @Last Modified time: 2023-03-15 21:51:26
+ * @Last Modified time: 2023-03-17 16:11:25
  *
  * All the response processing is here
  */
@@ -20,6 +20,18 @@ function parseApiResponse($apiResponse) {
     if ($responseData < 1) return;
 
     switch ($responseData[0]) {
+        case 'LFRACTALS':
+            return parseFractalsList($responseData[1]);
+        break;
+        case 'TVSTATUS':
+            return $responseData[1] == "1";
+        break;
+        case 'TVCONNECT':
+            return $responseData[1]; // Session id
+        break;
+        case 'TVSESSIONSTATUS':
+            return $responseData[1]; // Session is valid or not
+        break;  
         // Responses that doesnt need to be parsed
         case 'OK':
         case 'ERROR':
@@ -29,5 +41,10 @@ function parseApiResponse($apiResponse) {
             break;
     }
 }
+
+function parseFractalsList($str) {
+    return explode(";", $str);
+}
+
 
 ?>

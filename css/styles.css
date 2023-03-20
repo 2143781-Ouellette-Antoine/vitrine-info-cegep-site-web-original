@@ -19,6 +19,10 @@ h2, h3 {
     padding-top: 0.2em;
 }
 
+.GridCards > p.error {
+    position: absolute;
+}
+
 .NavigationBar {
     display: flex;
     flex-direction: row;

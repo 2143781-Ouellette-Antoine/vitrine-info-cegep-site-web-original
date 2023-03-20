@@ -66,6 +66,10 @@ if (isset($_SESSION['message_operation']) && !$_SESSION['message_operation']==""
 <!-- Footer -->
 <?php
 $_SESSION['BACK_BUTTON'] = true;
+
+/*
+HTTP_REFERER might not work with HTTPS and some browser might ommit it from the header section
+*/
 $_SESSION['BACK_PAGE_PATH'] = $_SERVER['HTTP_REFERER']??"index.php";
 $_SESSION['FOOTER_ACTION_TEXT'] = "";
 $_SESSION['FOOTER_ACTION_PATH'] = "";
