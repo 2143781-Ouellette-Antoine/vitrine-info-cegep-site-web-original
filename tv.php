@@ -5,10 +5,10 @@
  */
 /* Sauvegarder la page precedente. */
 require 'include/configuration.inc';
-$_SESSION['PAGE_NAME'] = "Se connecter";
-$_SESSION['TAB_TITLE'] = "Connexion";
-$_SESSION['PAGE_DESCRIPTION'] = "Page de connexion de la Vitrine informatique";
-$_SESSION['INCLUDE_CSS_JS'] = ["css/login.css", "js/login.js"];
+$_SESSION['PAGE_NAME'] = "Connexion TV";
+$_SESSION['TAB_TITLE'] = $_SESSION['PAGE_NAME'];
+$_SESSION['PAGE_DESCRIPTION'] = "Page de connexion à la TV de la Vitrine informatique";
+$_SESSION['INCLUDE_CSS_JS'] = ["css/tv.css"];
 require 'include/html-head.inc';
 
 //Si je provient du Formulaire
@@ -42,31 +42,23 @@ if (isset($_SESSION['message_operation']) && !$_SESSION['message_operation']==""
 <body class="center-content">
 
 <div id="login-container" class="center-content">
-    <h1>Connexion</h1>
-    <p id="InfoLogin">Connectez-vous avec votre adresse courriel du Cégep.</p>
-    <form action="http://127.0.0.1/vitrine-info/traitement-login.php" method="post" name="formulaireAuthentification" id="formulaireAuthentification" onsubmit="return ValidationFormulaire()">
+
+    <div class="VerticalButton" id="OTPExample">
+        <h3 class="VerticalButtonText">XYZ XYZ</h3>
+    </div>
+
+    <h1>Tapez le code affiché près de la TV</h1>
+    <form action="http://127.0.0.1/vitrine-info/traitement-tv.php" method="post" name="formulaireTOTPTV" id="formulaireTOTPTV" onsubmit="return true">
         <div class="form-group">
-            <label for="login_email" class="font-accent-color">Courriel:</label>
-            <input type="text" class="form-control" name="login_email" id="login_email" autofocus oninput="ValidationEmail()" placeholder="da@etudiant.cegepvicto.ca"
-                   value="<?php echo $donneesSaisiesPrecedemment['login_email'] ?? '' ?>">
-            <small class="font-error invisible">Erreur!</small>
-        </div>
-        <div class="form-group">
-            <label for="login_password" class="font-accent-color">Mot de passe:</label>
-            <input type="text" class="form-control" name="login_password" id="login_password" oninput="ValidationPassword()" placeholder="mot de passe"
-                   value="<?php echo $donneesSaisiesPrecedemment['login_password'] ?? '' ?>">
+            <input type="text" pattern="^\d{6}$" class="form-control" name="login_email" id="login_email" placeholder="000 000" autofocus required>
             <small class="font-error invisible">Erreur!</small>
         </div>
         <!--Soumettre-->
         <div>
-            <button type="submit" name="submitButton" class="Button">Se connecter</button>
+            <button type="submit" name="submitButton" class="Button">Suivant</button>
         </div>
-        <p class="font-accent-color" id="EmailNote">
-            da@etudiant.cegepvicto.ca<br>
-            da@carrefour.cegepvicto.ca<br>
-            nom@cegepvicto.ca
-        </p>
     </form>
+
 </div>
 
 <!-- Footer -->
