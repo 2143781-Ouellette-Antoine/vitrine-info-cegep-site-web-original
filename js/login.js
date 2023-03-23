@@ -58,8 +58,6 @@ function ValidationPassword() {
 
 function ValidationFormulaire()
 {
-    ValidationEmail();
-    ValidationPassword();
     //Les deux return true
     return ValidationEmail()&&ValidationPassword();
 }
