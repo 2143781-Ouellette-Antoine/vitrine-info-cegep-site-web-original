@@ -4,7 +4,7 @@
  * @Author: LarochelleJ
  * @Date:   2023-03-16 18:33:18
  * @Last Modified by:   LarochelleJ
- * @Last Modified time: 2023-03-23 12:24:30
+ * @Last Modified time: 2023-03-25 15:24:24
  */
 
 require 'include/configuration.inc';
@@ -68,13 +68,15 @@ require 'include/html-head.inc';
                                 }
                             }
 
-                            echo '<div class="GridContentItem">
-                                <img src="' . $image_path .'">
-                        
-                                <p>
-                                '. $fractal .'
-                                </p>
-                            </div>';
+                            echo '<a href="#">
+                                    <div class="GridContentItem">
+                                        <img src="' . $image_path .'">
+                                
+                                        <p>
+                                        '. $fractal .'
+                                        </p>
+                                    </div>
+                                </a>';
                         }
                     }
                 ?>
@@ -95,7 +97,7 @@ require 'include/html-head.inc';
     <!-- Footer -->
     <?php
     $_SESSION['BACK_BUTTON'] = true;
-    $_SESSION['BACK_PAGE_PATH'] = "cryptographie.php";
+    $_SESSION['BACK_PAGE_PATH'] = "fractales.php";
     $_SESSION['FOOTER_ACTION_TEXT'] = "";
     $_SESSION['FOOTER_ACTION_PATH'] = "";
     require 'include/footer.inc';
