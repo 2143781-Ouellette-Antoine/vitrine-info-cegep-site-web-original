@@ -46,5 +46,4 @@ function parseFractalsList($str) {
     return explode(";", $str);
 }
 
-
 ?>
