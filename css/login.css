@@ -33,7 +33,7 @@ input {
     font-size: medium;
     padding: 1em;
     background: #3e414a;
-    border-radius: 20px;
+    border-radius: 10px;
     border-style: none;
 }
 ::placeholder {
@@ -54,6 +54,8 @@ input:focus {
     padding: 1.3em;
     border-style: none;
     font-size: large;
+    color: #4186F5;
+    font-weight: bold;
 
     display: flex;
     justify-content: center;
