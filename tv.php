@@ -8,7 +8,7 @@ require 'include/configuration.inc';
 $_SESSION['PAGE_NAME'] = "Connexion TV";
 $_SESSION['TAB_TITLE'] = $_SESSION['PAGE_NAME'];
 $_SESSION['PAGE_DESCRIPTION'] = "Page de connexion à la TV de la Vitrine informatique";
-$_SESSION['INCLUDE_CSS_JS'] = ["css/tv.css", "js/tv.js"];
+$_SESSION['INCLUDE_CSS_JS'] = ["css/tv.css"];
 require 'include/html-head.inc';
 
 //Si je provient du Formulaire
@@ -49,16 +49,13 @@ if (isset($_SESSION['message_operation']) && !$_SESSION['message_operation']==""
 
     <h1>Tapez le code affiché près de la TV</h1>
     <form action="http://127.0.0.1/vitrine-info/traitement-tv.php" method="post" name="formulaireTOTPTV" id="formulaireTOTPTV" onsubmit="return true">
-        <div class="container">
-            <div class="inputfield">
-                <input type="number" maxlength="1" class="input" disabled />
-                <input type="number" maxlength="1" class="input" disabled />
-                <input type="number" maxlength="1" class="input" disabled />
-                <input type="number" maxlength="1" class="input" disabled />
-                <input type="number" maxlength="1" class="input" disabled />
-                <input type="number" maxlength="1" class="input" disabled />
-            </div>
-            <button class="" id="submit" onclick="validateOTP()">Submit</button>
+        <div class="form-group">
+            <input type="text" pattern="^\d{6}$" class="form-control" name="login_email" id="login_email" placeholder="000 000" autofocus required>
+            <small class="font-error invisible">Erreur!</small>
+        </div>
+        <!--Soumettre-->
+        <div>
+            <button type="submit" name="submitButton" class="Button">Suivant</button>
         </div>
     </form>
 
