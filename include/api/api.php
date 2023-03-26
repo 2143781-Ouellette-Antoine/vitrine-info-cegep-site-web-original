@@ -58,6 +58,7 @@ class Api {
     function checkTvSession($sessionID, $sessionTotp) {
         return $this->request("TVSESSIONSTATUS|" . $sessionID . "|" . $sessionTotp);
     }
+
 }
 
 ?>
