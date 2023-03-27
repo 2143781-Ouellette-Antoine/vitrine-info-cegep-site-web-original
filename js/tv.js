@@ -1,73 +1,53 @@
-//Initial references
-const input = document.querySelectorAll(".input");
-const inputField = document.querySelector(".inputfield");
-const submitButton = document.getElementById("submit");
-let inputCount = 0,
-    finalInput = "";
+function formatInput(input) {
+    // Remove all non-digit characters from the input value
+    let inputValue = input.value.replace(/\D/g, '');
 
-//Update input
-const updateInputConfig = (element, disabledStatus) => {
-    element.disabled = disabledStatus;
-    if (!disabledStatus) {
-        element.focus();
-    } else {
-        element.blur();
+    // Limit the input value to 6 digits
+    inputValue = inputValue.substring(0, 6);
+
+    // Set the formatted input value back into the input field
+    input.value = inputValue;
+}
+
+function handleCutPaste(input) {
+    // Wait a little bit to allow the cut or paste operation to complete
+    setTimeout(function() {
+        formatInput(input);
+    }, 10);
+}
+
+function handleKeyPress(event, input) {
+    console.log("press " + event.key);
+
+    if (
+        //If not digit, not Backspace, not Enter, not Home or not CTRL+V :
+        !(/\d/.test(event.key)) &&
+        !(event.key==="Backspace" || event.key==="Enter" || event.key==="ArrowLeft" || event.key==="ArrowRight" || event.key==="Home"|| event.key==="End") &&
+        !(event.ctrlKey && (event.key === "c" || event.key === "v"|| event.key === "a"))
+    ) {
+        //Prevent to write the invalid character.
+        event.preventDefault();
+        return;
     }
-};
 
-input.forEach((element) => {
-    element.addEventListener("keyup", (e) => {
-        e.target.value = e.target.value.replace(/[^0-9]/g, "");
-        let { value } = e.target;
+    // Format the input on every key press
+    formatInput(input);
+}
 
-        if (value.length == 1) {
-            updateInputConfig(e.target, true);
-            if (inputCount <= 5 && e.key != "Backspace") {
-                finalInput += value;
-                if (inputCount < 5) {
-                    updateInputConfig(e.target.nextElementSibling, false);
-                }
-            }
-            inputCount += 1;
-        } else if (value.length == 0 && e.key == "Backspace") {
-            finalInput = finalInput.substring(0, finalInput.length - 1);
-            if (inputCount == 0) {
-                updateInputConfig(e.target, false);
-                return false;
-            }
-            updateInputConfig(e.target, true);
-            e.target.previousElementSibling.value = "";
-            updateInputConfig(e.target.previousElementSibling, false);
-            inputCount -= 1;
-        } else if (value.length > 1) {
-            e.target.value = value.split("")[0];
-        }
-    });
-});
+function handleKeyDown(event, input) {
+    console.log("down " + event.key);
 
-window.addEventListener("keyup", (e) => {
-    if (inputCount > 5) {
-        if (e.key == "Backspace") {
-            finalInput = finalInput.substring(0, finalInput.length - 1);
-            updateInputConfig(inputField.lastElementChild, false);
-            inputField.lastElementChild.value = "";
-            inputCount -= 1;
-        }
+    if (
+        //If not digit, not Backspace, not Enter, not Home or not CTRL+V :
+        !(/\d/.test(event.key)) &&
+        !(event.key==="Backspace" || event.key==="Enter" || event.key==="ArrowLeft" || event.key==="ArrowRight" || event.key==="Home"|| event.key==="End") &&
+        !(event.ctrlKey && (event.key === "c" || event.key === "v"|| event.key === "a"))
+       ) {
+            //Prevent to write the invalid character.
+            event.preventDefault();
+            return;
     }
-});
 
-const validateOTP = () => {
-    alert("Success");
-};
-
-//Start
-const startInput = () => {
-    inputCount = 0;
-    finalInput = "";
-    input.forEach((element) => {
-        element.value = "";
-    });
-    updateInputConfig(inputField.firstElementChild, false);
-};
-
-window.onload = startInput();
+    // Format the input on every key press
+    formatInput(input);
+}
