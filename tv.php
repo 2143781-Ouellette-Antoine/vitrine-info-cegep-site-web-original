@@ -50,7 +50,7 @@ if (isset($_SESSION['message_operation']) && !$_SESSION['message_operation']==""
     <h1>Tapez le code affiché près de la TV</h1>
     <form action="http://127.0.0.1/vitrine-info/traitement-tv.php" method="post" name="formulaireTOTPTV" id="formulaireTOTPTV" onsubmit="return true">
         <div class="">
-            <input type="number" inputMode="numeric" class="" name="totp_code" id="totp_code" placeholder="000 000" autofocus required onInput="formatInput(this)" onCut="handleCutPaste(this)" onPaste="handleCutPaste(this)" onKeyPress="handleKeyPress(event, this)" onKeyDown="handleKeyDown(event, this)">
+            <input type="number" inputMode="numeric" class="" name="totp_code" id="totp_code" placeholder="000 000" autofocus required>
             <small class="font-error invisible">Erreur!</small>
         </div>
         <!--Soumettre-->
