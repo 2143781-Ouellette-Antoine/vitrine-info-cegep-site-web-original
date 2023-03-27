@@ -97,6 +97,10 @@ h2, h3 {
     color: #B85450;
 }
 
+.EmphasisButton {
+    background: #3e639f;
+    color: white;
+}
 .text-align-center {
     text-align: center;
 }
