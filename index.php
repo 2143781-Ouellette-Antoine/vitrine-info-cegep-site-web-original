@@ -1,5 +1,5 @@
 <?php
-$afficherEntrepot = true;
+$afficherEntrepot = false;
 /**
  *
  * @author Antoine Ouellette
@@ -64,28 +64,6 @@ require 'include/html-head.inc';
         }
         /******************************************** */
 ?>
-
-<!--                    <a class="ActivityButton flexbox-center-center" href="">-->
-<!--                        <img src="medias/server.svg">-->
-<!--                        <h3 class="text-align-center font-accent-color">Text</h3>-->
-<!--                    </a>-->
-<!--                    <a class="ActivityButton flexbox-center-center" href="">-->
-<!--                        <img src="medias/server.svg">-->
-<!--                        <h3 class="text-align-center font-accent-color">Text</h3>-->
-<!--                    </a>-->
-<!--                    <a class="ActivityButton flexbox-center-center" href="">-->
-<!--                        <img src="medias/server.svg">-->
-<!--                        <h3 class="text-align-center font-accent-color">Text</h3>-->
-<!--                    </a>-->
-<!--                    <a class="ActivityButton flexbox-center-center" href="">-->
-<!--                        <img src="medias/server.svg">-->
-<!--                        <h3 class="text-align-center font-accent-color">Text</h3>-->
-<!--                    </a>-->
-<!--                    <a class="ActivityButton flexbox-center-center" href="">-->
-<!--                        <img src="medias/server.svg">-->
-<!--                        <h3 class="text-align-center font-accent-color">Text</h3>-->
-<!--                    </a>-->
-
                 </div>
             </div>
         </div>

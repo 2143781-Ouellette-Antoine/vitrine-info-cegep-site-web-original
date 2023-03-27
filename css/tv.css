@@ -45,6 +45,15 @@ input {
 ::-ms-input-placeholder { /* Microsoft Edge */
     color: #474B57;
 }
+/* Remove arrows/spinners from input type number */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {/* Chrome, Safari, Edge, Opera */
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type=number] {/* Firefox */
+    -moz-appearance: textfield;
+}
 .Button {
     width: 100%;
     margin-top: 0.4em;

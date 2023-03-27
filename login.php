@@ -61,10 +61,10 @@ if (isset($_SESSION['message_operation']) && !$_SESSION['message_operation']==""
         <div>
             <button type="submit" name="submitButton" class="Button">Se connecter</button>
         </div>
-        <p class="font-accent-color" id="EmailNote">
+        <p id="EmailNote">
             da@etudiant.cegepvicto.ca<br>
             da@carrefour.cegepvicto.ca<br>
-            nom@cegepvicto.ca
+            nom.prenom@cegepvicto.ca
         </p>
     </form>
 </div>
