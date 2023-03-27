@@ -31,7 +31,7 @@ require 'include/navigation-bar.inc';
             <h3 class="VerticalButtonText">Nouvelle session</h3>
         </a>
         <a class="VerticalButton PageActionButton" href="#">
-            <img src="medias/server.svg" alt="Icone de floppy disk" class="VerticalButtonIcon">
+            <img src="medias/many-floppy-disks.svg" alt="Icone de plusieurs floppy disk" class="VerticalButtonIcon">
             <h3 class="font-accent-color VerticalButtonText">Charger une sauvegarde</h3>
         </a>
         <h2>Télécharger</h2>
