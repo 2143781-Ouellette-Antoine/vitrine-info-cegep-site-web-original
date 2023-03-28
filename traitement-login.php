@@ -9,7 +9,7 @@ define("BACK_PAGE_PATH", $_SESSION['BACK_PAGE_PATH']??"index.php");
 // Si je proviens d'un formulaire POST
 if (!empty($_POST))
 {
-    //*** Protection XSS *******************************************************************
+    //*** Protection XSS ******************************************************************
     foreach ($_POST as $element => $valeur)
     {
         $_POST[$element] = htmlspecialchars($valeur);//Convertir les caracteres speciaux
