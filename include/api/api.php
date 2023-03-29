@@ -4,7 +4,7 @@
  * @Author: LarochelleJ
  * @Date:   2023-03-15 20:49:04
  * @Last Modified by:   LarochelleJ
- * @Last Modified time: 2023-03-17 16:10:12
+ * @Last Modified time: 2023-03-28 15:56:31
  *
  * All API logic goes here
  */
@@ -45,6 +45,10 @@ class Api {
 
     function getFractalsList() {
         return $this->request("LFRACTALS|");
+    }
+
+    function playFractal($sketchName, $tvSessionId, $tvSessionCode) {
+        return $this->request("PLAYF|" . $sketchName . '|' . $tvSessionId . '|' . $tvSessionCode);
     }
 
     function isTvReady() {

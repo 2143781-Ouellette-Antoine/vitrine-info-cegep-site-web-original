@@ -3,7 +3,45 @@
  *
  * @author Antoine Ouellette
  */
+
+ /*
+Session TV
+ */
+require_once('include/api/api.php');
+
+try {
+    $api = new Api();
+} catch (Exception $e) {
+    // @todo Exception management
+    // Could be a redirection to an error page
+}
+
+/* TV session */
+if (isset($api)) {
+    if (isset($_SESSION['TV_SESSION_ID'])) {
+        if ($api->checkTvSession($_SESSION['TV_SESSION_ID'], $_SESSION['TV_SESSION_TOTP'])) {
+            // TV session is active, we redirect the user to the proper page (if possible)
+            switch ($_SESSION['PAGE_NAME']) {
+                case "Fractales":
+                    header("Location: liste-fractales.php");
+                    exit();
+                break;
+
+                default:
+                break;
+            }
+        } else { // TV session has expired
+            // Clear old TV session data
+            unset($_SESSION['TV_SESSION_ID']);
+            unset($_SESSION['TV_SESSION_TOTP']);
+
+            // Notify the user
+            $_SESSION['notification'] = ["info", "Votre session TV a expiré suite à votre inactivité."];
+        }
+    }
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="fr-CA">
 
@@ -16,6 +54,7 @@
 
     <link rel="icon" href="favicon.ico" type="image/png"/>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/notification.css">
     <?php
         //Pour chaque parametre
         foreach ($_SESSION['INCLUDE_CSS_JS'] as $path) {
@@ -29,5 +68,6 @@
             }
         }
     ?>
+    <script src="js/notification.js" defer></script>
 
 </head>
