@@ -72,11 +72,16 @@ if (isset($_SESSION['message_operation']) && !$_SESSION['message_operation']==""
 <!-- Footer -->
 <?php
 $_SESSION['BACK_BUTTON'] = true;
-
 /*
-HTTP_REFERER might not work with HTTPS and some browser might ommit it from the header section
-*/
-$_SESSION['BACK_PAGE_PATH'] = $_SERVER['HTTP_REFERER']??"index.php";
+    HTTP_REFERER might not work with HTTPS and some browser might ommit it from the header section
+    */
+if ( substr($_SERVER['HTTP_REFERER'], 0, 7)==="session" ) {
+    $_SESSION['BACK_PAGE_PATH'] = "details" . substr($_SERVER['HTTP_REFERER'], 7);
+    echo $_SESSION['BACK_PAGE_PATH'];
+}
+else {
+    $_SESSION['BACK_PAGE_PATH'] = $_SERVER['HTTP_REFERER']??"index.php";
+}
 $_SESSION['FOOTER_ACTION_TEXT'] = "";
 $_SESSION['FOOTER_ACTION_PATH'] = "";
 require 'include/footer.inc';
