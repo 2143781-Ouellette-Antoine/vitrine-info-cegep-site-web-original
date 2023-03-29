@@ -99,7 +99,7 @@ require 'include/navigation-bar.inc';
         <img src="<?php echo $thumbnail_path ?>">
 
         <h2>En ligne</h2>
-        <a class="VerticalButton PageActionButton EmphasisButton" href="#">
+        <a class="VerticalButton PageActionButton EmphasisButton" href="session-vm.php?id=<?php echo $idVM ?>">
             <img src="medias/stars-light.svg" alt="Icone étoiles" class="VerticalButtonIcon">
             <h3 class="VerticalButtonText">Nouvelle session</h3>
         </a>
@@ -117,9 +117,46 @@ require 'include/navigation-bar.inc';
             <h3 class="font-accent-color VerticalButtonText">Télécharger le VHD</h3>
         </a>
 
-        <h2>Description</h2>
+        <h2>Informations</h2>
+        <table>
+            <tr>
+                <td>Système d'exploitation: </td>
+                <td>Linux</td>
+            </tr>
+            <tr>
+                <td>Année: </td>
+                <td>2022</td>
+            </tr>
+            <tr>
+                <td>Basé sur: </td>
+                <td>Debian</td>
+            </tr>
+            <tr>
+                <td>Architecture: </td>
+                <td>x86_64, armhf, ppc64el, riscv, s390x</td>
+            </tr>
+            <tr>
+                <td>Bureau: </td>
+                <td>GNOME, Unity</td>
+            </tr>
+            <tr>
+                <td>Gestionnaire de packets logiciels: </td>
+                <td>APT (Advanced Package Tool) et supporte les .deb</td>
+            </tr>
+            <tr>
+                <td>Mises à jour?: </td>
+                <td>Oui</td>
+            </tr>
+        </table>
+
+        <h2>Instructions</h2>
         <p>
-            Voici la description de la machine virtuelle.
+            1. Cliquez sur le bouton « Nouvelle session ».<br>
+            2. Connectez-vous si ce n'est pas déjà fait.<br>
+            3. Cliquez sur le bouton « Démarrer ». Ne fermez pas cette fenêtre.<br>
+            4. Connectez-vous à la machine virtuelle avec les informations de connection données à la page de l'étape précédente.<br>
+            5. Pour quitter, éteigner la machine virtuelle, puis fermez l'onglet.<br>
+            6. Cliquez sur « Quitter » dans la page du site de la vitrine informatique pour le nettoyage.
         </p>
     </div>
 </div>

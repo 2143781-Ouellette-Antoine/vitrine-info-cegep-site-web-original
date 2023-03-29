@@ -4,6 +4,27 @@ img {
     border-radius: 5px;
 }
 
+table {
+    margin: 0.5em 0 0.5em 0;
+    border-collapse: collapse;
+    border-style: hidden;
+    background: #3E414A;
+}
+tr {
+    border: none;
+}
+td {
+    border-right: solid 1px #474B57;
+    border-left: solid 1px #474B57;
+    padding: 0.4em;
+}
+tr:nth-child(even) {
+    background: #474B57;
+}
+td:nth-child(even) {
+    color: #4186F5;
+}
+
 #GridContentPage > h2 {
     padding-top: 0.4em;
 }
