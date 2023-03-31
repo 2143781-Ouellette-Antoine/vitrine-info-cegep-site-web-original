@@ -16,8 +16,9 @@ if (!empty($_POST))
     }
 
     //*** Initialisation des variables pour clarifier le code *****************************
-    $email = $_POST['login_email'];
+    $email = strtolower($_POST['login_email']);
     $password = $_POST['login_password'];
+    $_SESSION['operation_reussie'] = false;
 
     //*** Validation serveur PHP **********************************************************
     $messageErreur = '';//vide a la base.
@@ -26,7 +27,7 @@ if (!empty($_POST))
     {
         $messageErreur .= 'L\'email est requis.<br />';
     }
-    elseif (!filter_var($email, FILTER_VALIDATE_REGEXP, array("options" => array("regexp"=>"/^[\w\-\.]+@(carrefour\.|etudiant\.)?cegepvicto.ca$/"))))//Si la variable est un courriel cegep.
+    elseif (!filter_var($email, FILTER_VALIDATE_REGEXP, array("options" => array("regexp"=>"/^(([a-z\-]+(\.[a-z\-]+)+@)|(\d{6,}@((etudiant)|(carrefour))\.))cegepvicto\.ca$/"))))//Si la variable est un courriel cegep.
     {
         $messageErreur .= 'L\'email n\'est pas une adresse Cegep.<br />';
     }
@@ -49,8 +50,8 @@ if (!empty($_POST))
     {
         //Si il n'y a pas d'erreur
 
-        //*** SQL *************************************************************************
-        $requete = "SELECT email, password FROM utilisateur WHERE email=?";
+        //*** SELECT **********************************************************************
+        $requete = "SELECT password, password_salt FROM utilisateur WHERE email=?";
         $stmt = $mysqli->prepare($requete);
 
         if ($stmt){
@@ -59,13 +60,64 @@ if (!empty($_POST))
             $stmt->execute();
 
             if (0 == $stmt->errno) {
-                $_SESSION['operation_reussie'] = true;
-                $_SESSION['message_operation'] = "";
+
+                if ($stmt->num_rows > 0)
+                {
+                    //Email Exists:
+                    $stmt->bind_result($result_password, $result_salt);
+                    $stmt->close();
+
+                    if (password_verify($password . $result_salt, $result_password)) {
+                        //Password Good.
+                        $_SESSION['operation_reussie'] = true;
+                        $_SESSION['message_operation'] = "Connecté avec succès!";
+                    } else {
+                        //Password Wrong.
+                        $_SESSION['message_operation'] = "L'adresse courriel et le mot de passe ne correspondent pas.";
+                    }
+                }
+                else
+                {
+                    //Email doesn't exist:
+                    $stmt->close();
+
+                    //*** INSERT **********************************************************************
+                    //Hash new password.
+                    try {
+                        $salt = bin2hex(random_bytes(16));
+                    } catch (Exception $e) {
+                        $salt = md5(uniqid(mt_rand(), true));
+                    }
+                    $password = password_hash($password . $salt, PASSWORD_BCRYPT);
+                    //Insert.
+                    $requete = "INSERT INTO utilisateur(email, password, password_salt) VALUES (?, ?, ?)";
+                    $stmt = $mysqli->prepare($requete);
+
+                    if ($stmt){
+
+                        $stmt->bind_param('sss', $email, $password, $salt);
+                        $stmt->execute();
+
+                        if (0 == $stmt->errno) {
+                            $_SESSION['operation_reussie'] = true;
+                            $_SESSION['message_operation'] = "Compte créé avec succès!";
+                        }
+                        else {
+                            $_SESSION['message_operation'] = "Nous sommes désolés, un problème technique nous empêche de créer votre compte (code 1).";
+                        }
+                        $stmt->close();
+                    }
+                    else {
+                        $_SESSION['message_operation'] = "Nous sommes désolés, un problème technique nous empêche de créer votre compte (code 2).";
+                    }
+                    //*********************************************************************************
+
+                }
             }
             else {
                 $_SESSION['message_operation'] = "Nous sommes désolés, un problème technique nous empêche de vous connecter (code 1).";
+                $stmt->close();
             }
-            $stmt->close();
         }
         else {
             $_SESSION['message_operation'] = "Nous sommes désolés, un problème technique nous empêche de vous connecter (code 2).";
@@ -85,7 +137,7 @@ if (!empty($_POST))
     }
 
     //Redirection:
-    if ($_SESSION['operation_reussie'] == true) {
+    if ($_SESSION['operation_reussie']) {
         //Declarer que Logged In
         $_SESSION['LOGGED_IN'] = true;
         //retourne a la page precedente.

@@ -5,6 +5,27 @@
  */
 require 'include/configuration.inc';
 
+//Si la page retourne un message
+if (isset($_SESSION['message_operation']) && !$_SESSION['message_operation']=="")
+{
+    //Message de reussite
+    if ($_SESSION['operation_reussie'] == true)
+    {
+        echo "<div class='alert alert-success' role='alert'>";
+    }
+    //Message d'echec
+    else
+    {
+        echo "<div class='alert alert-error' role='alert'>";
+    }
+
+    echo "<p>" . $_SESSION['message_operation'] . "</p>";//Affiche le contenu du message.
+    echo "<button>ⓧ</button>
+            </div>";
+    $_SESSION['message_operation'] = null;
+    $_SESSION['operation_reussie'] = null;
+}
+
 if (empty($_GET)) {
     $idVM_string = "1";
     $idVM = 1;
@@ -19,7 +40,6 @@ if (empty($_GET)) {
     $idVM_string = htmlspecialchars($_GET['id']);
     $idVM = intval($idVM_string);
 }
-
 if ( !($idVM == 0) ) {//if not 0:
     $_SESSION['operation_reussie'] = false;
     //*** SQL *************************************************************************
@@ -55,27 +75,6 @@ else {
     // on redirige vers la page d'accueil sans avertissement
     //header("location: index.php");
 }
-
-//Si la page retourne un message
-if (isset($_SESSION['message_operation']) && !$_SESSION['message_operation']=="")
-{
-    //Message de reussite
-    if ($_SESSION['operation_reussie'] == true)
-    {
-        echo "<div class='alert alert-success' role='alert'>";
-    }
-    //Message d'echec
-    else
-    {
-        echo "<div class='alert alert-error' role='alert'>";
-    }
-
-    echo $_SESSION['message_operation'];//Affiche le contenu du message.
-    echo "</div>";
-    $_SESSION['message_operation'] = null;
-    $_SESSION['operation_reussie'] = null;
-}
-
 
 /* Creation des variables de session a passer a html-head.inc */
 $_SESSION['PAGE_NAME'] = $vm_nom;
