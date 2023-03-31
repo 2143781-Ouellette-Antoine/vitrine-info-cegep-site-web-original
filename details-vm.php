@@ -11,17 +11,17 @@ if (isset($_SESSION['message_operation']) && !$_SESSION['message_operation']==""
     //Message de reussite
     if ($_SESSION['operation_reussie'] == true)
     {
-        echo "<div class='alert alert-success' role='alert'>";
+        echo "<div class='alert alert-success' role='alert' id='notification'>";
     }
     //Message d'echec
     else
     {
-        echo "<div class='alert alert-error' role='alert'>";
+        echo "<div class='alert alert-error' role='alert' id='notification'>";
     }
 
     echo "<p>" . $_SESSION['message_operation'] . "</p>";//Affiche le contenu du message.
-    echo "<button>ⓧ</button>
-            </div>";
+    echo "        <button id='dismiss-button'>ⓧ</button>
+                </div>";
     $_SESSION['message_operation'] = null;
     $_SESSION['operation_reussie'] = null;
 }
