@@ -44,7 +44,7 @@ if (isset($_SESSION['message_operation']) && !$_SESSION['message_operation']==""
 <div id="login-container" class="center-content">
     <h1>Connexion</h1>
     <p id="InfoLogin">Connectez-vous avec votre adresse courriel du Cégep.</p>
-    <form action="http://127.0.0.1/vitrine-info/traitement-login.php" method="post" name="formulaireAuthentification" id="formulaireAuthentification" onsubmit="return ValidationFormulaire()">
+    <form action="traitement-login.php" method="post" name="formulaireAuthentification" id="formulaireAuthentification" onsubmit="return ValidationFormulaire()">
         <div class="form-group">
             <label for="login_email" class="font-accent-color">Courriel:</label>
             <input type="text" class="form-control" name="login_email" id="login_email" autofocus oninput="ValidationEmail()" placeholder="da@etudiant.cegepvicto.ca"
@@ -53,7 +53,7 @@ if (isset($_SESSION['message_operation']) && !$_SESSION['message_operation']==""
         </div>
         <div class="form-group">
             <label for="login_password" class="font-accent-color">Mot de passe:</label>
-            <input type="text" class="form-control" name="login_password" id="login_password" oninput="ValidationPassword()" placeholder="mot de passe"
+            <input type="password" class="form-control" name="login_password" id="login_password" oninput="ValidationPassword()" placeholder="mot de passe"
                    value="<?php echo $donneesSaisiesPrecedemment['login_password'] ?? '' ?>">
             <small class="font-error invisible">Erreur!</small>
         </div>
@@ -74,12 +74,15 @@ if (isset($_SESSION['message_operation']) && !$_SESSION['message_operation']==""
 $_SESSION['BACK_BUTTON'] = true;
 /*
     HTTP_REFERER might not work with HTTPS and some browser might ommit it from the header section
-    */
-if ( substr($_SERVER['HTTP_REFERER'], 0, 7)==="session" ) {
-    $_SESSION['BACK_PAGE_PATH'] = "details" . substr($_SERVER['HTTP_REFERER'], 7);
-}
-else {
-    $_SESSION['BACK_PAGE_PATH'] = $_SERVER['HTTP_REFERER']??"index.php";
+*/
+if (isset($_SERVER['HTTP_REFERER'])) {
+    if (substr($_SERVER['HTTP_REFERER'], 0, 7) === "session" ) {
+        $_SESSION['BACK_PAGE_PATH'] = "details" . substr($_SERVER['HTTP_REFERER'], 7);
+    } else {
+        $_SESSION['BACK_PAGE_PATH'] = $_SERVER['HTTP_REFERER'];
+    }
+} else {
+    $_SESSION['BACK_PAGE_PATH'] = "index.php";
 }
 $_SESSION['FOOTER_ACTION_TEXT'] = "";
 $_SESSION['FOOTER_ACTION_PATH'] = "";
