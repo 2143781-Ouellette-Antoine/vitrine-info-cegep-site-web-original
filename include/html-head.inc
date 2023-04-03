@@ -54,6 +54,8 @@ if (isset($_SESSION['TV_SESSION_ID'])) { // User might have an active TV session
     <link rel="icon" href="favicon.ico" type="image/png"/>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/notification.css">
+    <script src='js/script.js' defer></script>
+
     <?php
         //Pour chaque parametre
         foreach ($_SESSION['INCLUDE_CSS_JS'] as $path) {
