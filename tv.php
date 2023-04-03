@@ -55,7 +55,7 @@ if (isset($_SESSION['message_operation']) && !$_SESSION['message_operation']==""
         </div>
         <!--Soumettre-->
         <div>
-            <button id="btn_connect" type="submit" name="submitButton" class="Button">Suivant</button>
+            <button id="submitButton" type="submit" name="submitButton" class="Button">Suivant</button>
         </div>
     </form>
 

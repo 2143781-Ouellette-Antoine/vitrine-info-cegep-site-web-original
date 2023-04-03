@@ -4,7 +4,7 @@
  * @Author: LarochelleJ
  * @Date:   2023-03-16 18:33:18
  * @Last Modified by:   LarochelleJ
- * @Last Modified time: 2023-03-28 20:22:27
+ * @Last Modified time: 2023-04-03 12:59:28
  */
 
 require 'include/configuration.inc';
@@ -97,7 +97,7 @@ require 'include/html-head.inc';
     <!-- Footer -->
     <?php
     $_SESSION['BACK_BUTTON'] = true;
-    $_SESSION['BACK_PAGE_PATH'] = "/";
+    $_SESSION['BACK_PAGE_PATH'] = isset($_SESSION['TV_SESSION_ID']) ? "/" : "fractales.php";
     $_SESSION['FOOTER_ACTION_TEXT'] = "";
     $_SESSION['FOOTER_ACTION_PATH'] = "";
     require 'include/footer.inc';

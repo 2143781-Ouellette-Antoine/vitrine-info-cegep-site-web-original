@@ -9,16 +9,15 @@ Session TV
  */
 require_once('include/api/api.php');
 
-try {
-    $api = new Api();
-} catch (Exception $e) {
-    // @todo Exception management
-    // Could be a redirection to an error page
-}
-
 /* TV session */
-if (isset($api)) {
-    if (isset($_SESSION['TV_SESSION_ID'])) {
+if (isset($_SESSION['TV_SESSION_ID'])) { // User might have an active TV session
+    try {
+        $api = new Api();
+    } catch (Exception $e) {
+        $_SESSION['notification'] = ["warning", "Une erreur technique s'est produite et pourrait nuire à votre expérience. (api_reseau)"];
+    }
+
+    if (isset($api)) {
         if ($api->checkTvSession($_SESSION['TV_SESSION_ID'], $_SESSION['TV_SESSION_TOTP'])) {
             // TV session is active, we redirect the user to the proper page (if possible)
             switch ($_SESSION['PAGE_NAME']) {

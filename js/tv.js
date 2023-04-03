@@ -78,7 +78,7 @@ function handleKeyDown(event, input) {
 
 /* Vanilla JS */
 
-const button = document.getElementById('btn_connect');
+const button = document.getElementById('submitButton');
 
 button.addEventListener('click', function(event) {
     if (inputTOTP.value != "") {
