@@ -40,9 +40,10 @@ if (!empty($_POST))
     {
         $messageErreur .= 'Le mot de passe est requis.<br />';
     }
-    elseif (mb_strlen($password) > 100)//Si la variable est plus grande que 100 caracteres
+    elseif (strlen($password) > 72) //Si la variable est plus grande que 72 bytes
     {
-        $messageErreur .= 'Le mot de passe depasse 100 caracteres.<br />';
+        // BCRYPT est limité à 72 bytes
+        $messageErreur .= 'Le mot de passe est trop long<br />';
     }
 
     //La validation termine, Executer une action correspondante
@@ -51,7 +52,7 @@ if (!empty($_POST))
         //Si il n'y a pas d'erreur
 
         //*** SELECT **********************************************************************
-        $requete = "SELECT password, password_salt FROM utilisateur WHERE email=?";
+        $requete = "SELECT password, password_salt FROM utilisateur WHERE email=?;";
         $stmt = $mysqli->prepare($requete);
 
         if ($stmt){
@@ -60,21 +61,27 @@ if (!empty($_POST))
             $stmt->execute();
 
             if (0 == $stmt->errno) {
+                $stmt->store_result();
 
                 if ($stmt->num_rows > 0)
                 {
                     //Email Exists:
                     $stmt->bind_result($result_password, $result_salt);
-                    $stmt->close();
 
-                    if (password_verify($password . $result_salt, $result_password)) {
-                        //Password Good.
-                        $_SESSION['operation_reussie'] = true;
-                        $_SESSION['message_operation'] = "Connecté avec succès!";
+                    if ($stmt->fetch()) {
+                        if (password_verify($password . $result_salt, $result_password)) {
+                            //Password Good.
+                            $_SESSION['operation_reussie'] = true;
+                            $_SESSION['message_operation'] = "Connecté avec succès!";
+                        } else {
+                            //Password Wrong.
+                            $_SESSION['message_operation'] = "L'adresse courriel et le mot de passe ne correspondent pas.";
+                        }
                     } else {
-                        //Password Wrong.
-                        $_SESSION['message_operation'] = "L'adresse courriel et le mot de passe ne correspondent pas.";
+                        $_SESSION['message_operation'] = "Nous sommes désolés, un problème technique nous empêche de vous connecter (code 3).";
                     }
+
+                    $stmt->close();
                 }
                 else
                 {
