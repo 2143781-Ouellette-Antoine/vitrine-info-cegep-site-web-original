@@ -4,7 +4,7 @@
  * @Author: LarochelleJ
  * @Date:   2023-03-16 18:33:18
  * @Last Modified by:   LarochelleJ
- * @Last Modified time: 2023-03-25 15:24:24
+ * @Last Modified time: 2023-04-03 12:59:28
  */
 
 require 'include/configuration.inc';
@@ -13,7 +13,7 @@ require 'include/configuration.inc';
 $_SESSION['PAGE_NAME'] = "Choisissez une fractale";
 $_SESSION['TAB_TITLE'] = $_SESSION['PAGE_NAME'];
 $_SESSION['PAGE_DESCRIPTION'] = "Page de la liste des activites Fractales de la Vitrine informatique";
-$_SESSION['INCLUDE_CSS_JS'] = ["css/activite.css"];
+$_SESSION['INCLUDE_CSS_JS'] = ["css/activite.css", "js/fractales.js"];
 
 require 'include/html-head.inc';
 ?>
@@ -68,7 +68,7 @@ require 'include/html-head.inc';
                                 }
                             }
 
-                            echo '<a href="#">
+                            echo '<a fractal="'. $fractal .'" href="#">
                                     <div class="GridContentItem">
                                         <img src="' . $image_path .'">
                                 
@@ -97,7 +97,7 @@ require 'include/html-head.inc';
     <!-- Footer -->
     <?php
     $_SESSION['BACK_BUTTON'] = true;
-    $_SESSION['BACK_PAGE_PATH'] = "fractales.php";
+    $_SESSION['BACK_PAGE_PATH'] = isset($_SESSION['TV_SESSION_ID']) ? "/" : "fractales.php";
     $_SESSION['FOOTER_ACTION_TEXT'] = "";
     $_SESSION['FOOTER_ACTION_PATH'] = "";
     require 'include/footer.inc';

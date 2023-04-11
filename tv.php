@@ -8,7 +8,7 @@ require 'include/configuration.inc';
 $_SESSION['PAGE_NAME'] = "Connexion TV";
 $_SESSION['TAB_TITLE'] = $_SESSION['PAGE_NAME'];
 $_SESSION['PAGE_DESCRIPTION'] = "Page de connexion à la TV de la Vitrine informatique";
-$_SESSION['INCLUDE_CSS_JS'] = ["css/tv.css", "js/tv.js"];
+$_SESSION['INCLUDE_CSS_JS'] = ["css/tv.css", /*"js/jquery-3.6.4.min.js",*/ "js/tv.js"];
 require 'include/html-head.inc';
 
 //Si je provient du Formulaire
@@ -51,11 +51,11 @@ if (isset($_SESSION['message_operation']) && !$_SESSION['message_operation']==""
     <form action="http://127.0.0.1/vitrine-info/traitement-tv.php" method="post" name="formulaireTOTPTV" id="formulaireTOTPTV" onsubmit="return true">
         <div class="">
             <input type="number" inputMode="numeric" class="" name="totp_code" id="totp_code" placeholder="000 000" autofocus required>
-            <small class="font-error invisible">Erreur!</small>
+            <small id="status" class="font-error invisible">Erreur!</small>
         </div>
         <!--Soumettre-->
         <div>
-            <button type="submit" name="submitButton" class="Button">Suivant</button>
+            <button id="submitButton" type="submit" name="submitButton" class="Button">Suivant</button>
         </div>
     </form>
 

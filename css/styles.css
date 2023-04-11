@@ -141,6 +141,11 @@ h2, h3 {
 .font-accent-color {
     color: #4186F5;
 }
+
+.font-success {
+    color: #50B874;
+}
+
 .invisible {
     visibility: hidden;
 }

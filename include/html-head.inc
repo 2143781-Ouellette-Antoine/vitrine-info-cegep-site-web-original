@@ -3,7 +3,44 @@
  *
  * @author Antoine Ouellette
  */
+
+ /*
+Session TV
+ */
+require_once('include/api/api.php');
+
+/* TV session */
+if (isset($_SESSION['TV_SESSION_ID'])) { // User might have an active TV session
+    try {
+        $api = new Api();
+    } catch (Exception $e) {
+        $_SESSION['notification'] = ["warning", "Une erreur technique s'est produite et pourrait nuire à votre expérience. (api_reseau)"];
+    }
+
+    if (isset($api)) {
+        if ($api->checkTvSession($_SESSION['TV_SESSION_ID'], $_SESSION['TV_SESSION_TOTP'])) {
+            // TV session is active, we redirect the user to the proper page (if possible)
+            switch ($_SESSION['PAGE_NAME']) {
+                case "Fractales":
+                    header("Location: liste-fractales.php");
+                    exit();
+                break;
+
+                default:
+                break;
+            }
+        } else { // TV session has expired
+            // Clear old TV session data
+            unset($_SESSION['TV_SESSION_ID']);
+            unset($_SESSION['TV_SESSION_TOTP']);
+
+            // Notify the user
+            $_SESSION['notification'] = ["info", "Votre session TV a expiré suite à votre inactivité."];
+        }
+    }
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="fr-CA">
 
@@ -16,7 +53,9 @@
 
     <link rel="icon" href="favicon.ico" type="image/png"/>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/notification.css">
     <script src='js/script.js' defer></script>
+
     <?php
         //Pour chaque parametre
         foreach ($_SESSION['INCLUDE_CSS_JS'] as $path) {
@@ -30,5 +69,6 @@
             }
         }
     ?>
+    <script src="js/notification.js" defer></script>
 
 </head>

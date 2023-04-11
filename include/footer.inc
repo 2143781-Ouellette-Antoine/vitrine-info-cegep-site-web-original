@@ -29,3 +29,16 @@ if($_SESSION['BACK_PAGE_PATH']==$currentURL)
         <img src="medias/arrow-left.svg" style="rotate: 180deg" alt="Icone connexion" class="VerticalButtonIcon">
     </a>
 </div>
+
+<script type="text/javascript">
+    window.addEventListener('load', function() {
+        <?php
+            if (isset($_SESSION['notification'])) {
+                $notification = $_SESSION['notification'];
+                echo 'notification("' . $notification[0] . '", "' . $notification[1] . '");';
+                
+                unset($_SESSION['notification']);
+            }
+        ?>
+    });
+</script>

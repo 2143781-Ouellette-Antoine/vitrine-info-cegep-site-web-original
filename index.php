@@ -81,6 +81,20 @@ require 'include/html-head.inc';
 
 </div>
 </body>
+
+<script type="text/javascript">
+    window.addEventListener('load', function() {
+        <?php
+            if (isset($_SESSION['notification'])) {
+                $notification = $_SESSION['notification'];
+                echo 'notification("' . $notification[0] . '", "' . $notification[1] . '");';
+                
+                unset($_SESSION['notification']);
+            }
+        ?>
+    });
+</script>
+
 <?php
 require 'include/nettoyage.inc';
 ?>
